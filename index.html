@@ -1,119 +1,556 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Stand Out Stay True</title>
-  <link rel="stylesheet" href="style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stand Out Stay True</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+background:white;
+color:black;
+transition:0.3s;
+}
+
+body.dark{
+background:#0a0a0a;
+color:white;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:25px 8%;
+position:sticky;
+top:0;
+background:rgba(255,255,255,0.9);
+backdrop-filter:blur(10px);
+z-index:1000;
+border-bottom:1px solid #eee;
+}
+
+body.dark nav{
+background:rgba(10,10,10,0.9);
+border-bottom:1px solid #222;
+}
+
+.logo{
+font-size:28px;
+font-weight:700;
+}
+
+.links{
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+.links a{
+text-decoration:none;
+color:inherit;
+font-weight:500;
+font-size:15px;
+}
+
+.toggle{
+cursor:pointer;
+padding:10px 16px;
+border-radius:999px;
+border:none;
+background:black;
+color:white;
+font-weight:600;
+}
+
+body.dark .toggle{
+background:white;
+color:black;
+}
+
+.hero{
+height:90vh;
+background:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop') center/cover;
+display:flex;
+align-items:center;
+padding:0 8%;
+position:relative;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.35);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:650px;
+color:white;
+}
+
+.hero h1{
+font-size:78px;
+line-height:0.95;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.7;
+margin-bottom:35px;
+color:#eee;
+}
+
+.hero button{
+padding:16px 34px;
+border:none;
+border-radius:999px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+background:white;
+color:black;
+}
+
+.section{
+padding:90px 8%;
+}
+
+.section-title{
+font-size:42px;
+margin-bottom:50px;
+}
+
+.categories{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+.category{
+height:250px;
+border-radius:24px;
+overflow:hidden;
+position:relative;
+cursor:pointer;
+}
+
+.category img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.4s;
+}
+
+.category:hover img{
+transform:scale(1.08);
+}
+
+.category-overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.3);
+display:flex;
+align-items:end;
+padding:25px;
+}
+
+.category-overlay h3{
+color:white;
+font-size:28px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:25px;
+}
+
+.product{
+border-radius:20px;
+overflow:hidden;
+background:#f5f5f5;
+transition:0.3s;
+}
+
+body.dark .product{
+background:#141414;
+}
+
+.product:hover{
+transform:translateY(-5px);
+}
+
+.product img{
+width:100%;
+height:320px;
+object-fit:cover;
+}
+
+.product-info{
+padding:18px;
+}
+
+.product-info h4{
+font-size:18px;
+margin-bottom:8px;
+}
+
+.product-info p{
+opacity:0.7;
+margin-bottom:15px;
+}
+
+.product-info button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:black;
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+body.dark .product-info button{
+background:white;
+color:black;
+}
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:28px;
+height:550px;
+object-fit:cover;
+}
+
+.about-text h2{
+font-size:52px;
+margin-bottom:25px;
+}
+
+.about-text p{
+line-height:1.8;
+opacity:0.8;
+font-size:17px;
+}
+
+footer{
+padding:60px 8%;
+border-top:1px solid #eee;
+margin-top:70px;
+}
+
+body.dark footer{
+border-top:1px solid #222;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:40px;
+}
+
+.footer-grid h4{
+margin-bottom:20px;
+}
+
+.footer-grid p{
+margin-bottom:10px;
+opacity:0.7;
+}
+
+.search{
+width:100%;
+padding:16px;
+border-radius:14px;
+border:1px solid #ddd;
+margin-bottom:35px;
+font-size:16px;
+}
+
+body.dark .search{
+background:#111;
+color:white;
+border:1px solid #222;
+}
+
+@media(max-width:1000px){
+
+.categories{
+grid-template-columns:1fr 1fr;
+}
+
+.products{
+grid-template-columns:1fr 1fr;
+}
+
+.hero h1{
+font-size:56px;
+}
+
+.about{
+grid-template-columns:1fr;
+}
+
+}
+
+@media(max-width:700px){
+
+.links{
+display:none;
+}
+
+.products{
+grid-template-columns:1fr;
+}
+
+.categories{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:42px;
+}
+
+.section-title{
+font-size:32px;
+}
+
+}
+
+</style>
 </head>
+
 <body>
 
 <nav>
-  <h1>Stand Out <span>Stay True</span></h1>
 
-  <div class="links">
-    <a href="#shop">Shop</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
+<div class="logo">
+Stand Out Stay True
+</div>
+
+<div class="links">
+<a href="#">Home</a>
+<a href="#">Shop</a>
+<a href="#">New Arrivals</a>
+<a href="#">Hoodies</a>
+<a href="#">Tees</a>
+<a href="#">Shorts</a>
+<a href="#">Sets</a>
+
+<button class="toggle" onclick="toggleMode()">
+Dark Mode
+</button>
+
+</div>
+
 </nav>
 
 <section class="hero">
-  <div class="hero-text">
-    <p class="tag">CALM • SPORTY • MINIMAL</p>
 
-    <h2>Wear Confidence.<br>Stay True.</h2>
+<div class="hero-content">
 
-    <p class="desc">
-      Clean athletic-inspired clothing built for confidence,
-      comfort, and everyday movement.
-    </p>
+<h1>
+STAND OUT.<br>
+STAY TRUE.
+</h1>
 
-    <button>Shop Now</button>
-  </div>
+<p>
+Minimal athletic wear built for confidence,
+comfort, movement, and everyday life.
+</p>
 
-  <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop">
+<button>
+Shop Collection
+</button>
+
+</div>
+
 </section>
 
-<section id="shop" class="products">
-  <h3>All Products</h3>
+<section class="section">
 
-  <div class="product-grid">
+<h2 class="section-title">
+Shop Categories
+</h2>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Butterfly Effect T-Shirt</h4>
-      <p>$30</p>
-      <button>Buy Now</button>
-    </div>
+<div class="categories">
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1506629905607-d9b1d4b6e0b3?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Change Is Not Pretty T-Shirt</h4>
-      <p>$30</p>
-      <button>Buy Now</button>
-    </div>
+<div class="category">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
+<div class="category-overlay">
+<h3>Hoodies</h3>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Stop The Sprial T-Shirt</h4>
-      <p>$30</p>
-      <button>Buy Now</button>
-    </div>
-     
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOSTPlaid Waistband Barrel Sweatpants</h4>
-      <p>$50</p>
-      <button>Buy Now</button>
-    </div>
+<div class="category">
+<img src="https://images.unsplash.com/photo-1506629905607-d9b1d4b6e0b3?q=80&w=1200&auto=format&fit=crop">
+<div class="category-overlay">
+<h3>Joggers</h3>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST 3-Quater "JAMO" Sweatpants</h4>
-      <p>$50</p>
-      <button>Buy Now</button>
-    </div>
+<div class="category">
+<img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
+<div class="category-overlay">
+<h3>Tees</h3>
+</div>
+</div>
 
-  <div class="card">
-      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Black Compression T-Shirt</h4>
-      <p>$25</p>
-      <button>Buy Now</button>
-    </div>
+<div class="category">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop">
+<div class="category-overlay">
+<h3>Sets</h3>
+</div>
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Long Sleeve Black Compressio T-Shirt</h4>
-      <p>$30</p>
-      <button>Buy Now</button>
-    </div>
+</div>
 
-    <div class="card">
-      <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-      <h4>SOST Mesh Drawstring Shorts</h4>
-      <p>$25</p>
-      <button>Buy Now</button>
-    </div>
-
-  </div>
 </section>
 
-<section id="about" class="about">
-  <div>
-    <h3>Designed For Everyday Athletes.</h3>
+<section class="section">
 
-    <p>
-      Stand Out Stay True is about confidence without trying too hard.
-      Inspired by modern athletic brands with a calm and minimal style.
-    </p>
-  </div>
+<h2 class="section-title">
+Featured Products
+</h2>
+
+<input class="search" placeholder="Search products...">
+
+<div class="products">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
+
+<div class="product-info">
+<h4>Essential Hoodie</h4>
+<p>$55</p>
+<button>Add To Cart</button>
+</div>
+
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1506629905607-d9b1d4b6e0b3?q=80&w=1200&auto=format&fit=crop">
+
+<div class="product-info">
+<h4>Motion Joggers</h4>
+<p>$45</p>
+<button>Add To Cart</button>
+</div>
+
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
+
+<div class="product-info">
+<h4>Core Tee</h4>
+<p>$30</p>
+<button>Add To Cart</button>
+</div>
+
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop">
+
+<div class="product-info">
+<h4>Training Set</h4>
+<p>$70</p>
+<button>Add To Cart</button>
+</div>
+
+</div>
+
+</div>
+
 </section>
 
-<footer id="contact">
-  <h2>Stand Out <span>Stay True</span></h2>
-  <p>Instagram • TikTok • support@sostbrand.com</p>
+<section class="section about">
+
+<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop">
+
+<div class="about-text">
+
+<h2>
+Built For Everyday Athletes.
+</h2>
+
+<p>
+Stand Out Stay True is about confidence without trying too hard.
+Inspired by modern athletic brands with a calm and minimal style.
+Designed for everyday movement, training, and comfort.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h4>Brand</h4>
+<p>Stand Out Stay True</p>
+<p>Minimal Athletic Wear</p>
+</div>
+
+<div>
+<h4>Shop</h4>
+<p>Hoodies</p>
+<p>Tees</p>
+<p>Shorts</p>
+<p>Sets</p>
+</div>
+
+<div>
+<h4>Information</h4>
+<p>Shipping</p>
+<p>Track Order</p>
+<p>All Sales Final</p>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>Your Email Here</p>
+<p>YouTube Coming Soon</p>
+</div>
+
+</div>
+
 </footer>
+
+<script>
+
+function toggleMode(){
+document.body.classList.toggle('dark');
+}
+
+</script>
 
 </body>
 </html>
+```
