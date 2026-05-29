@@ -16,6 +16,26 @@ padding:0;
 box-sizing:border-box;
 font-family:'Inter',sans-serif;
 }
+```css id="74ddr5"
+html{
+scroll-behavior:smooth;
+}
+
+.announcement{
+background:black;
+color:white;
+text-align:center;
+padding:12px;
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+body.dark .announcement{
+background:white;
+color:black;
+}
+```
 
 body{
 background:white;
@@ -344,8 +364,35 @@ font-size:32px;
 </head>
 
 <body>
+ ```html id="3n3d12"
+<div class="announcement">
+FREE WORLDWIDE SHIPPING ON ORDERS $100+
+</div>
+```
 
 <nav>
+```html id="y3pr5d"
+<nav>
+
+<div class="logo">
+Stand Out Stay True
+</div>
+
+<div class="links">
+<a href="#home">Home</a>
+<a href="#collections">Collections</a>
+<a href="#featured">Featured</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+
+<button class="toggle" onclick="toggleMode()">
+Dark Mode
+</button>
+
+</div>
+
+</nav>
+```
 
 <div class="logo">
 Stand Out Stay True
@@ -368,7 +415,10 @@ Dark Mode
 
 </nav>
 
-<section class="hero">
+```html id="o5cf8z"
+<section class="hero" id="home">
+```
+
 
 <div class="hero-content">
 
@@ -390,7 +440,10 @@ Shop Collection
 
 </section>
 
-<section class="section">
+```html id="nmce6j"
+<section class="section" id="collections">
+```
+
 
 <h2 class="section-title">
 Shop Categories
@@ -430,7 +483,10 @@ Shop Categories
 
 </section>
 
-<section class="section">
+```html id="sgm2mc"
+<section class="section" id="featured">
+```
+
 
 <h2 class="section-title">
 Featured Products
@@ -488,7 +544,10 @@ Featured Products
 
 </section>
 
-<section class="section about">
+```html id="jlwmta"
+<section class="section about" id="about">
+```
+
 
 <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop">
 
@@ -508,7 +567,10 @@ Designed for everyday movement, training, and comfort.
 
 </section>
 
-<footer>
+```html id="zdxgr5"
+<footer id="contact">
+```
+
 
 <div class="footer-grid">
 
