@@ -243,17 +243,20 @@ const products=[
 ];
 
 function card(p){
-return `<div class="card">
-<img src="0AoNK_0_07167100_1780161704.raw
+return `
+<div class="card">
+<img src="https://via.placeholder.com/500x600?text=Product">
 <div class="card-body">
 <h3>${p[0]}</h3>
 <div class="price">$${p[1]}</div>
-<button class="card-btn">Add To Cart</button>
-</div></div>`;
+<button class="card-btn" onclick="addToCart('${p[0]}', ${p[1]})">Add To Cart</button>
+</div>
+</div>
+`;
 }
 
 function render(list){
-document.getElementById("products").innerHTML=list.map(card).join("");
+document.getElementById("products").innerHTML = list.map(card).join("");
 }
 render(products);
 document.getElementById("newProducts").innerHTML=products.slice(0,4).map(card).join("");
@@ -267,5 +270,13 @@ function toggleMenu(){
 document.getElementById("navLinks").classList.toggle("show");
 }
 </script>
+  let cart = [];
+
+function addToCart(name, price){
+cart.push({name, price});
+alert(name + " added to cart");
+console.log(cart);
+}
+  
 </body>
 </html>
