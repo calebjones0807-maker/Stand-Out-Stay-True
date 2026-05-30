@@ -1,640 +1,271 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Stand Out Stay True</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+:root{
+--bg:#ffffff;
+--surface:#f6f6f6;
+--text:#111111;
+--muted:#666;
+--border:#e5e5e5;
+--accent:#000;
+--shadow:0 10px 30px rgba(0,0,0,.08);
 }
-```css
-html{
-scroll-behavior:smooth;
-}
-
-.announcement{
-background:black;
-color:white;
-text-align:center;
-padding:12px;
-font-size:14px;
-font-weight:600;
-letter-spacing:1px;
-}
-
-body.dark .announcement{
-background:white;
-color:black;
-}
-```
-
-body{
-background:white;
-color:black;
-transition:0.3s;
-}
-
 body.dark{
-background:#0a0a0a;
-color:white;
+--bg:#0d0d0d;
+--surface:#171717;
+--text:#f5f5f5;
+--muted:#b0b0b0;
+--border:#2a2a2a;
+--accent:#fff;
 }
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:22px 8%;
-position:sticky;
-top:0;
-background:rgba(255,255,255,0.92);
-backdrop-filter:blur(12px);
-z-index:1000;
-border-bottom:1px solid #ececec;
-}
-
-body.dark nav{
-background:rgba(10,10,10,0.92);
-border-bottom:1px solid #222;
-}
-
-.logo{
-font-size:42px;
-font-weight:800;
-letter-spacing:-2px;
-line-height:0.9;
-max-width:260px;
-}
-
-.links{
-display:flex;
-align-items:center;
-gap:34px;
-}
-
-.links a{
-text-decoration:none;
-color:inherit;
-font-size:15px;
-font-weight:600;
-transition:0.25s;
-position:relative;
-}
-
-.links a:hover{
-opacity:0.6;
-}
-
-.toggle{
-padding:14px 22px;
-border:none;
-border-radius:999px;
-background:black;
-color:white;
-font-weight:700;
-cursor:pointer;
-transition:0.3s;
-}
-
-.toggle:hover{
-transform:translateY(-2px);
-}
-
-body.dark .toggle{
-background:white;
-color:black;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text);transition:.25s}
+.container{max-width:1300px;margin:auto;padding:0 24px}
+.announcement{background:#000;color:#fff;text-align:center;padding:12px;font-size:.85rem;letter-spacing:1px}
+.navbar{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);z-index:1000}
+body.dark .navbar{background:rgba(13,13,13,.92)}
+.nav-inner{height:75px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:2px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{text-decoration:none;color:var(--text)}
+.actions{display:flex;gap:10px}
+.icon-btn{border:1px solid var(--border);background:var(--surface);padding:10px 12px;border-radius:12px;cursor:pointer}
+.menu{display:none}
 .hero{
-height:92vh;
-background:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop') center/cover;
-display:flex;
-align-items:center;
-padding:0 8%;
-position:relative;
-margin-top:0;
+height:90vh;
+background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.35)),url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1800&auto=format&fit=crop') center/cover;
+display:flex;align-items:center;color:#fff;
 }
-
-.hero::before{
-content:'';
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.35);
+.hero h1{font-size:clamp(3.5rem,8vw,7rem);line-height:.95}
+.hero p{max-width:650px;margin:20px 0 30px;color:#e8e8e8}
+.btn{padding:15px 28px;border-radius:999px;background:#fff;color:#000;text-decoration:none;font-weight:700}
+.section{padding:90px 0}
+.section-title{text-align:center;font-size:2.4rem;margin-bottom:15px}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:40px}
+.banner{
+display:grid;grid-template-columns:2fr 1fr;gap:20px;
 }
-
-.hero-content{
-position:relative;
-z-index:2;
-max-width:650px;
-color:white;
+.banner-card,.mini-card{
+border-radius:24px;overflow:hidden;position:relative;min-height:260px;
+background-size:cover;background-position:center;
 }
-
-.hero h1{
-font-size:96px;
-line-height:0.9;
-margin-bottom:28px;
-font-weight:800;
-letter-spacing:-4px;
+.banner-card{background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop')}
+.mini-card{background-image:url('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=900&auto=format&fit=crop')}
+.overlay{
+position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65),transparent);
+padding:30px;color:#fff;display:flex;flex-direction:column;justify-content:end
 }
-
-.hero p{
-font-size:20px;
-line-height:1.7;
-margin-bottom:35px;
-color:#eee;
+.collections{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px
 }
-
-.hero button{
-padding:16px 34px;
-border:none;
-border-radius:999px;
-font-size:16px;
-font-weight:600;
-cursor:pointer;
-background:white;
-color:black;
+.collection{
+background:var(--surface);
+padding:24px;
+border-radius:18px;
+text-align:center;
+font-weight:700;
+border:1px solid var(--border)
 }
-
-.section{
-padding:90px 8%;
-}
-
-.section-title{
-font-size:42px;
-margin-bottom:50px;
-}
-
-.categories{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
-}
-
-.category{
-height:250px;
-border-radius:24px;
-overflow:hidden;
-position:relative;
-cursor:pointer;
-}
-
-.category img{
-width:100%;
-height:100%;
-object-fit:cover;
-transition:0.4s;
-}
-
-.category:hover img{
-transform:scale(1.08);
-}
-
-.category-overlay{
-position:absolute;
-inset:0;
-background:rgba(0,0,0,0.3);
-display:flex;
-align-items:end;
-padding:25px;
-}
-
-.category-overlay h3{
-color:white;
-font-size:28px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:25px;
-}
-
-.product{
-border-radius:20px;
-overflow:hidden;
-background:#f5f5f5;
-transition:0.3s;
-}
-
-body.dark .product{
-background:#141414;
-}
-
-.product:hover{
-transform:translateY(-5px);
-}
-
-.product img{
-width:100%;
-height:320px;
-object-fit:cover;
-}
-
-.product-info{
-padding:18px;
-}
-
-.product-info h4{
-font-size:18px;
-margin-bottom:8px;
-}
-
-.product-info p{
-opacity:0.7;
-margin-bottom:15px;
-}
-
-.product-info button{
-width:100%;
-padding:12px;
-border:none;
-border-radius:12px;
-background:black;
-color:white;
-font-weight:600;
-cursor:pointer;
-}
-
-body.dark .product-info button{
-background:white;
-color:black;
-}
-
-.about{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:60px;
-align-items:center;
-}
-
-.about img{
-width:100%;
-border-radius:28px;
-height:550px;
-object-fit:cover;
-}
-
-.about-text h2{
-font-size:52px;
-margin-bottom:25px;
-}
-
-.about-text p{
-line-height:1.8;
-opacity:0.8;
-font-size:17px;
-}
-
-footer{
-padding:60px 8%;
-border-top:1px solid #eee;
-margin-top:70px;
-}
-
-body.dark footer{
-border-top:1px solid #222;
-}
-
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:40px;
-}
-
-.footer-grid h4{
-margin-bottom:20px;
-}
-
-.footer-grid p{
-margin-bottom:10px;
-opacity:0.7;
-}
-
 .search{
 width:100%;
 padding:16px;
 border-radius:14px;
-border:1px solid #ddd;
-margin-bottom:35px;
-font-size:16px;
+border:1px solid var(--border);
+background:var(--surface);
+color:var(--text)
 }
-
-body.dark .search{
-background:#111;
-color:white;
-border:1px solid #222;
-}
-
-@media(max-width:1000px){
-
-.categories{
-grid-template-columns:1fr 1fr;
-}
-
 .products{
-grid-template-columns:1fr 1fr;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px
 }
-
-.hero h1{
-font-size:56px;
+.card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:22px;
+overflow:hidden;
+transition:.25s;
+box-shadow:var(--shadow)
 }
-
-.about{
-grid-template-columns:1fr;
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:320px;object-fit:cover}
+.card-body{padding:18px}
+.price{font-weight:800;margin:10px 0}
+.card-btn{
+width:100%;padding:14px;border:none;border-radius:12px;
+background:var(--accent);color:var(--bg);font-weight:700;cursor:pointer
 }
-
+.about-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center
 }
-
-@media(max-width:700px){
-
- nav{
-padding:18px 6%;
+.about-img{
+height:450px;border-radius:24px;
+background:url('https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop') center/cover
 }
-
-.logo{
-font-size:28px;
-max-width:180px;
+.newsletter{
+background:var(--surface);
+border:1px solid var(--border);
+padding:40px;border-radius:24px;text-align:center
 }
-
-.links{
-gap:16px;
-overflow-x:auto;
+.newsletter input{
+width:min(500px,100%);
+padding:15px;border-radius:12px;border:1px solid var(--border);
+margin:15px 0
 }
-
-.toggle{
-padding:10px 16px;
-font-size:13px;
+footer{
+padding:60px 0;background:#000;color:#fff;margin-top:80px
 }
-
-.hero h1{
-font-size:56px;
+.footer-grid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:30px
 }
-
- .links{
-display:none;
+.footer-grid h4{margin-bottom:12px}
+.footer-grid a{display:block;color:#d0d0d0;text-decoration:none;margin:8px 0}
+@media(max-width:850px){
+.banner,.about-grid{grid-template-columns:1fr}
+.nav-links{
+display:none;position:absolute;top:75px;left:0;right:0;background:var(--bg);
+flex-direction:column;padding:20px;border-bottom:1px solid var(--border)
 }
-
-.products{
-grid-template-columns:1fr;
+.nav-links.show{display:flex}
+.menu{display:block}
 }
-
-.categories{
-grid-template-columns:1fr;
-}
-
-.hero h1{
-font-size:42px;
-}
-
-.section-title{
-font-size:32px;
-}
-
-}
-
 </style>
 </head>
-
 <body>
- 
-<div class="announcement">
-FREE WORLDWIDE SHIPPING ON ORDERS $100+
+<div class="announcement">FREE SHIPPING ON ORDERS OVER $75 • NEW PERFORMANCE COLLECTION LIVE</div>
+
+<nav class="navbar">
+<div class="container nav-inner">
+<div class="logo">STAND OUT STAY TRUE</div>
+<div class="nav-links" id="navLinks">
+<a href="#collections">Collections</a>
+<a href="#featured">Featured</a>
+<a href="#new">New Arrivals</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
 </div>
-
-
-
-
- 
+<div class="actions">
+<button class="icon-btn" onclick="document.body.classList.toggle('dark')">☀️/🌙</button>
+<button class="icon-btn">🛒</button>
+<button class="icon-btn menu" onclick="toggleMenu()">☰</button>
+</div>
+</div>
 </nav>
 
-<div class="logo">
-STAND OUT<br>
-STAY TRUE
+<section class="hero">
+<div class="container">
+<h1>STAND OUT.<br>STAY TRUE.</h1>
+<p>Minimal athletic wear built for confidence, comfort, movement, and everyday life.</p>
+<a href="#featured" class="btn">Shop Collection</a>
 </div>
-
-<div class="links">
-<a href="#">Home</a>
-<a href="#">Shop</a>
-<a href="#">New Arrivals</a>
-<a href="#">Hoodies</a>
-<a href="#">Tees</a>
-<a href="#">Shorts</a>
-<a href="#">Sets</a>
-
-<button class="toggle" onclick="toggleMode()">
-Dark Mode
-</button>
-
-</div>
-
-</nav>
-
-
-<section class="hero" id="home">
-
-
-
-<div class="hero-content">
-
-<h1>
-STAND OUT.<br>
-STAY TRUE.
-</h1>
-
-<p>
-Minimal athletic wear built for confidence,
-comfort, movement, and everyday life.
-</p>
-
-<button>
-Shop Collection
-</button>
-
-</div>
-
 </section>
 
-
-<section class="section" id="collections">
-
-
-
-<h2 class="section-title">
-Shop Categories
-</h2>
-
-<div class="categories">
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
-<div class="category-overlay">
-<h3>Hoodies</h3>
+<section class="section container">
+<div class="banner">
+<div class="banner-card"><div class="overlay"><h2>Performance Essentials</h2></div></div>
+<div class="mini-card"><div class="overlay"><h3>New Season</h3></div></div>
 </div>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1506629905607-d9b1d4b6e0b3?q=80&w=1200&auto=format&fit=crop">
-<div class="category-overlay">
-<h3>Joggers</h3>
-</div>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-<div class="category-overlay">
-<h3>Tees</h3>
-</div>
-</div>
-
-<div class="category">
-<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop">
-<div class="category-overlay">
-<h3>Sets</h3>
-</div>
-</div>
-
-</div>
-
 </section>
 
-
-<section class="section" id="featured">
-
-
-
-<h2 class="section-title">
-Featured Products
-</h2>
-
-<input class="search" placeholder="Search products...">
-
-<div class="products">
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop">
-
-<div class="product-info">
-<h4>Essential Hoodie</h4>
-<p>$55</p>
-<button>Add To Cart</button>
+<section class="section container" id="collections">
+<h2 class="section-title">Collections</h2>
+<div class="collections">
+<div class="collection">Hoodies</div>
+<div class="collection">Tees</div>
+<div class="collection">Shorts</div>
+<div class="collection">Joggers</div>
+<div class="collection">Compression</div>
+<div class="collection">Sets</div>
+<div class="collection">Sportswear</div>
 </div>
-
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1506629905607-d9b1d4b6e0b3?q=80&w=1200&auto=format&fit=crop">
-
-<div class="product-info">
-<h4>Motion Joggers</h4>
-<p>$45</p>
-<button>Add To Cart</button>
-</div>
-
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1200&auto=format&fit=crop">
-
-<div class="product-info">
-<h4>Core Tee</h4>
-<p>$30</p>
-<button>Add To Cart</button>
-</div>
-
-</div>
-
-<div class="product">
-<img src="https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop">
-
-<div class="product-info">
-<h4>Training Set</h4>
-<p>$70</p>
-<button>Add To Cart</button>
-</div>
-
-</div>
-
-</div>
-
 </section>
 
-
-<section class="section about" id="about">
-
-
-
-<img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1600&auto=format&fit=crop">
-
-<div class="about-text">
-
-<h2>
-Built For Everyday Athletes.
-</h2>
-
-<p>
-Stand Out Stay True is about confidence without trying too hard.
-Inspired by modern athletic brands with a calm and minimal style.
-Designed for everyday movement, training, and comfort.
-</p>
-
-</div>
-
+<section class="container">
+<input id="search" class="search" placeholder="Search products...">
 </section>
 
+<section class="section container" id="featured">
+<h2 class="section-title">Featured Products</h2>
+<div class="products" id="products"></div>
+</section>
 
-<footer id="contact">
+<section class="section container" id="new">
+<h2 class="section-title">New Arrivals</h2>
+<div class="products" id="newProducts"></div>
+</section>
 
-
-
-<div class="footer-grid">
-
+<section class="section container" id="about">
+<div class="about-grid">
+<div class="about-img"></div>
 <div>
-<h4>Brand</h4>
-<p>Stand Out Stay True</p>
-<p>Minimal Athletic Wear</p>
+<h2>Built For Movement</h2>
+<p style="margin-top:15px;color:var(--muted)">Stand Out Stay True combines clean aesthetics with athletic performance. Every piece is designed to look sharp in the gym and comfortable everywhere else.</p>
 </div>
-
-<div>
-<h4>Shop</h4>
-<p>Hoodies</p>
-<p>Tees</p>
-<p>Shorts</p>
-<p>Sets</p>
 </div>
+</section>
 
-<div>
-<h4>Information</h4>
-<p>Shipping</p>
-<p>Track Order</p>
-<p>All Sales Final</p>
+<section class="container" id="contact">
+<div class="newsletter">
+<h2>Stay Updated</h2>
+<input placeholder="Enter your email">
+<div><button class="card-btn" style="max-width:250px">Join Community</button></div>
 </div>
+</section>
 
-<div>
-<h4>Contact</h4>
-<p>Your Email Here</p>
-<p>YouTube Coming Soon</p>
+<footer>
+<div class="container footer-grid">
+<div><h4>Brand</h4><p>Stand Out Stay True</p></div>
+<div><h4>Shop</h4><a>Hoodies</a><a>Tees</a><a>Joggers</a></div>
+<div><h4>Support</h4><a>Contact</a><a>Shipping</a><a>Track Order</a></div>
+<div><h4>Policies</h4><a>All Sales Final</a></div>
 </div>
-
-</div>
-
 </footer>
 
 <script>
+const products=[
+["Performance Hoodie","59.99"],
+["Essential Tee","29.99"],
+["Training Shorts","34.99"],
+["Athletic Joggers","49.99"],
+["Compression Top","39.99"],
+["Elite Set","79.99"],
+["Sportswear Tee","32.99"],
+["Oversized Hoodie","64.99"],
+["Core Joggers","54.99"],
+["Velocity Shorts","36.99"],
+["Premium Tee","31.99"],
+["Recovery Set","84.99"]
+];
 
-function toggleMode(){
-document.body.classList.toggle('dark');
+function card(p){
+return `<div class="card">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000&auto=format&fit=crop">
+<div class="card-body">
+<h3>${p[0]}</h3>
+<div class="price">$${p[1]}</div>
+<button class="card-btn">Add To Cart</button>
+</div></div>`;
 }
 
-</script>
+function render(list){
+document.getElementById("products").innerHTML=list.map(card).join("");
+}
+render(products);
+document.getElementById("newProducts").innerHTML=products.slice(0,4).map(card).join("");
 
+document.getElementById("search").addEventListener("input",e=>{
+const t=e.target.value.toLowerCase();
+render(products.filter(x=>x[0].toLowerCase().includes(t)));
+});
+
+function toggleMenu(){
+document.getElementById("navLinks").classList.toggle("show");
+}
+</script>
 </body>
 </html>
-
